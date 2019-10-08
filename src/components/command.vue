@@ -22,11 +22,11 @@
         <mt-header fixed style="font-size:25px;height: 50px;" title="信息统计">
           <hr>
         </mt-header>
-        <div id ="myChart1" style="width:500px;height:300px"></div><hr>
-        <div id ="myChart2" style="width:500px;height:300px"></div><hr>
-        <div id ="myChart3" style="width:500px;height:300px"></div><hr>
-        <div  id="myChart4" style="width:500px;height:300px"></div><hr>
-        <div id ="myChart5" style="width:500px;height:300px"></div>
+        <div id ="myChart1" style="width:100%;height:300px"></div><hr>
+        <div id ="myChart2" style="width:100%;height:300px"></div><hr>
+        <div id ="myChart3" style="width:100%;height:300px"></div><hr>
+        <div  id="myChart4" style="width:100%;height:300px"></div><hr>
+        <div id ="myChart5" style="width:100%;height:300px"></div>
                 <br><br>
       </mt-tab-container-item>
     </mt-tab-container>
