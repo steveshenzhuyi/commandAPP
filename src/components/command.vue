@@ -111,8 +111,8 @@
         </mt-button>
         <mt-button @click="HosVisable=true">医院组
         </mt-button>
-        <mt-button @click="ExpertVisable=true">专家组
-        </mt-button>
+        <!-- <mt-button @click="ExpertVisable=true">专家组
+        </mt-button> -->
         <br><br>
       </mt-tab-container-item>
       <mt-tab-container-item id="统计">
@@ -122,14 +122,13 @@
           <hr>
         </mt-header>
         <br><br>
-        <div v-show="!datepickerVisiable">
+        <div v-show="!datepickerVisiable" style="margin-top: 10px;margin-bottom: 10px">
           <mt-button @click.native="open('picker')">请选择日期</mt-button>
         </div>
         <div v-show="datepickerVisiable">
           <mt-button @click.native="open('picker')">{{dataVal | formatDate}}</mt-button>
           <mt-button @click="reset()">重置</mt-button>
         </div>
-
         <mt-datetime-picker v-model="dataVal"
                             type="date"
                             ref="picker"
@@ -160,7 +159,6 @@
     </mt-tab-container>
     <mt-popup v-model="popupVisible1"
               position="right">
-
     </mt-popup>
     <mt-popup v-model="AssVisable"
               position="bottom"
@@ -169,7 +167,6 @@
         <div @click="chooseass(item.LocationNo)"
              class="text-group">
           {{item.LocationName}} </br>
-
           位置: <span style="color:#d3b29b;font-size:20px;">{{item.Description}}</span></br>
           会场负责人: {{item.realManager}} &nbsp;&nbsp; 联系方式: {{item.phone}}
           <hr>
@@ -192,12 +189,10 @@
           <hr>
         </div>
       </div>
-
     </mt-popup>
     <mt-popup v-model="HosVisable"
               position="bottom"
               style="width:344px;max-height:240px;overflow:auto">
-
       <div v-for="item in hoslist">
         <div class="text-group"
              @click="choosehos(item.OrganizationCode)">
@@ -220,7 +215,6 @@
           <hr>
         </div>
       </div>
-
     </mt-popup>
     <mt-popup v-model="ExpertVisable"
               position="bottom"
@@ -229,10 +223,8 @@
         <div class="text-group">
           {{item.Name}} </br>
           {{item.DepartmentName}} &nbsp;&nbsp; 专长：{{item.Specialty}}
-
           <hr>
         </div>
-
       </div>
     </mt-popup>
     <div>
