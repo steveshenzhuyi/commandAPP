@@ -68,11 +68,12 @@ export default {
 
           var scheme = 'com.tencent.trtc';
           var roomnumber = 996;
+          var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
           appAvailability.check(scheme,
             function() {
               var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
                 "roomnumber":roomnumber,
-                "videoid":902
+                "videoid":videoid
               });
               sApp.start(function() {
               }, function(error) {

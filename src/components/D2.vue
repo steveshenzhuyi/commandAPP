@@ -87,13 +87,13 @@ export default {
         if(response.data.results == "发送成功"){
 
           var scheme = 'com.tencent.trtc';
-          var roomnumber = 996;
+          var videoid = Number(window.localStorage.getItem("VIDEOUSERID"));
           console.log(roomnumber)
           appAvailability.check(scheme,
             function() {
               var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
                 "roomnumber":roomnumber,
-                "videoid":901
+                "videoid":videoid
               });
               sApp.start(function() {
               }, function(error) {
@@ -147,6 +147,7 @@ export default {
       //   if(response.data.results == "发送成功"){
           var scheme = 'com.tencent.trtc';
           var roomnumber = 990;
+          var videoid = Number(window.localStorage.getItem("VIDEOUSERID"));
           appAvailability.check(scheme,
             function() {
               var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
@@ -178,11 +179,12 @@ export default {
         if(response.data.results == "发送成功"){
           var scheme = 'com.tencent.trtc';
           var roomnumber = 991;
+          var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
           appAvailability.check(scheme,
             function() {
               var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
                 "roomnumber":roomnumber,
-                "videoid":901
+                "videoid":videoid
               });
               sApp.start(function() {
               }, function(error) {
@@ -209,11 +211,12 @@ export default {
         if(response.data.results == "发送成功"){
           var scheme = 'com.tencent.trtc';
           var roomnumber = 992;
+          var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
           appAvailability.check(scheme,
             function() {
               var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
                 "roomnumber":roomnumber,
-                "videoid":901
+                "videoid":videoid
               });
               sApp.start(function() {
               }, function(error) {
@@ -240,11 +243,12 @@ export default {
         if(response.data.results == "发送成功"){
           var scheme = 'com.tencent.trtc';
           var roomnumber = 993;
+          var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
           appAvailability.check(scheme,
             function() {
               var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
                 "roomnumber":roomnumber,
-                "videoid":901
+                "videoid":videoid
               });
               sApp.start(function() {
               }, function(error) {

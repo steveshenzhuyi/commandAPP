@@ -29,14 +29,14 @@
               <mt-button @click="callhall()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
             type="primary"><b>接通指挥中心</b></mt-button>
             </div><br>
-            <!-- <div>
+            <div>
               <mt-button  @click="callcom()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
             type="primary"><b>呼叫总指挥</b></mt-button>
-            </div><br> -->
-            <div>
+            </div><br>
+            <!-- <div>
               <mt-button  @click="callasscom()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
             type="primary"><b>呼叫现场指挥</b></mt-button>
-            </div><br>
+            </div><br> -->
             <div>
             <mt-button @click="callsingle()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
             type="primary"><b>单独通话</b></mt-button></div><br>
@@ -289,6 +289,7 @@ export default {
     this.getHoslist();
     this.getAsslist();
     this.getExpertlist();
+    this.getVideoUserList()
   },
   methods: {
     callsingle(){
@@ -299,7 +300,7 @@ this.$router.push({name: 'D2'});
     },
     callhall(){
       var scheme = 'com.tencent.trtc';
-      var videoid = 901
+      var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
       appAvailability.check(scheme,
         function() {
           var sApp = startApp.set({"application":"com.tencent.trtc"
@@ -326,7 +327,7 @@ this.$router.push({name: 'D2'});
         if(response.data.results == "发送成功"){
 
           var scheme = 'com.tencent.trtc';
-          var roomnumber = 997;
+          var roomnumber = 902;
           console.log(roomnumber)
           appAvailability.check(scheme,
             function() {
@@ -753,25 +754,27 @@ this.$router.push({name: 'D2'});
         })
     },
     getVideoUserList() {
-      window.JPush.setTags({ sequence: 1, tags: ['R05', '901'] },
+      window.JPush.setTags({ sequence: 1, tags: ['R05', '902'] },
         (result) => {
+          // alert(tags)
           var sequence = result.sequence
           var tags = result.tags
+          // alert(tags)
         }, (error) => {
-          console.log(error)
+          // alert(error)
         })
 
-      axios.get('/getVideoUserList', {}).then((response) => {
-        for (var i = 0; i < response.data.results.length; i++) {
-          if (response.data.results[i].VideoId != 901) {
-            var videoname = response.data.results[i].Name + "(" + response.data.results[i].VideoId + ")"
-            this.critical1list.push({ label: videoname, value: response.data.results[i].VideoId })
-          }
+      // axios.get('/getVideoUserList', {}).then((response) => {
+      //   for (var i = 0; i < response.data.results.length; i++) {
+      //     if (response.data.results[i].VideoId != 901) {
+      //       var videoname = response.data.results[i].Name + "(" + response.data.results[i].VideoId + ")"
+      //       this.critical1list.push({ label: videoname, value: response.data.results[i].VideoId })
+      //     }
 
-        }
-      }).catch(function (error) {
-        console.log("error", error);
-      })
+      //   }
+      // }).catch(function (error) {
+      //   console.log("error", error);
+      // })
     },
     cancel() {
       this.critical1 = []
@@ -792,11 +795,12 @@ this.$router.push({name: 'D2'});
 
             var scheme = 'com.tencent.trtc';
             var roomnumber = 996;
+            var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
             appAvailability.check(scheme,
               function () {
                 var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
                   "roomnumber": roomnumber,
-                  "videoid": 901
+                  "videoid": videoid
                 });
                 sApp.start(function () {
                 }, function (error) {
@@ -829,11 +833,12 @@ this.$router.push({name: 'D2'});
           if (response.data.results == "发送成功") {
             var scheme = 'com.tencent.trtc';
             var roomnumber = 990;
+            var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
             appAvailability.check(scheme,
               function () {
                 var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
                   "roomnumber": roomnumber,
-                  "videoid": 901
+                  "videoid": videoid
                 });
                 sApp.start(function () {
                 }, function (error) {
@@ -1019,10 +1024,10 @@ this.$router.push({name: 'D2'});
       this.$router.push({ name: 'C1', params: { type: 1, id: 993 } });
     },
     seesend() {
-      this.$router.push({ name: 'C1', params: { type: 2, id: 901 } });
+      this.$router.push({ name: 'C1', params: { type: 2, id: 902 } });
     },
     seereceive() {
-      this.$router.push({ name: 'C1', params: { type: 3, id: 901 } });
+      this.$router.push({ name: 'C1', params: { type: 3, id: 902 } });
     },
     handleConfirm() {
       // console.log(this.dataVal)
