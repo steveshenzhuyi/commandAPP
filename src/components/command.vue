@@ -28,15 +28,15 @@
             </div>
             <div @click="callass()">
               <mt-cell><span style="font-size: 20px"
-                      slot="title"><b>呼叫全体现场组</b></span></mt-cell>
+                      slot="title"><b>呼叫现场组</b></span></mt-cell>
             </div>
             <div @click="callcar()">
               <mt-cell><span style="font-size: 20px"
-                      slot="title"><b>呼叫全体车辆组</b></span></mt-cell>
+                      slot="title"><b>呼叫车辆组</b></span></mt-cell>
             </div>
             <div @click="callhos()">
               <mt-cell><span style="font-size: 20px"
-                      slot="title"><b>呼叫全体医院组</b></span></mt-cell>
+                      slot="title"><b>呼叫医院组</b></span></mt-cell>
             </div>
             <div align="left"
                  style="">
@@ -70,17 +70,17 @@
             </div>
             <div @click="seeass()">
               <mt-cell>
-                <h4 slot="title">全体现场组</h4>
+                <h4 slot="title">所有现场组</h4>
               </mt-cell>
             </div>
             <div @click="seecar()">
               <mt-cell>
-                <h4 slot="title">全体车辆组</h4>
+                <h4 slot="title">所有车辆组</h4>
               </mt-cell>
             </div>
             <div @click="seehos()">
               <mt-cell>
-                <h4 slot="title">全体医院组</h4>
+                <h4 slot="title">所有医院组</h4>
               </mt-cell>
             </div>
             <div @click="seesend()">
@@ -610,7 +610,7 @@ export default {
       axios.get('/getVideoUserList', {}).then((response) => {
         for (var i = 0; i < response.data.results.length; i++) {
           if (response.data.results[i].VideoId != 901) {
-            var videoname = response.data.results[i].Username + "(" + response.data.results[i].VideoId + ")"
+            var videoname = response.data.results[i].Name + "(" + response.data.results[i].VideoId + ")"
             this.critical1list.push({ label: videoname, value: response.data.results[i].VideoId })
           }
 
