@@ -386,14 +386,36 @@ this.$router.push({name: 'D2'});
     draw1() {
       let chart = this.$echarts.init(document.getElementById('myChart1'), 'dark')
       axios.get('/getAllStatusCount', {}).then((response) => {
+        var data1 = [];
         var a = response.data.results.chuzhizhong;
         var b = response.data.results.chuzhiwancheng;
         var c = response.data.results.daihousong;
         var d = response.data.results.housongzhong;
         var e = response.data.results.yiruyuan;
         var f = response.data.results.yichuyuan;
-        var data1 = [];
-        data1.push({ name: '处置中', value: a }, { name: '处置完成', value: b }, { name: '待后送', value: c }, { name: '后送中', value: d }, { name: '已入院', value: e }, { name: '已出院', value: f })
+
+        if (a > 0) {
+          data1.push({ name: '处置中', value: a })
+        }
+        if (b > 0) {
+          data1.push({ name: '处置完成', value: b })
+        }
+        if (c > 0) {
+          data1.push({ name: '待后送', value: c })
+        }
+        if (d > 0) {
+          data1.push({ name: '后送中', value: d })
+        }
+        if (e > 0) {
+          data1.push({ name: '已入院', value: e })
+        }
+        if (f > 0) {
+          data1.push({ name: '已出院', value: f })
+        }
+        if (data1.length < 1) {
+          data1.push({ name: '处置中', value: 0 }, { name: '处置完成', value: 0 }, { name: '待后送', value: 0 }, { name: '后送中', value: 0 }, { name: '已入院', value: 0 }, { name: '已出院', value: 0 })
+        }
+
         chart.setOption({
           title: {
             text: '病人状态统计'
@@ -422,14 +444,70 @@ this.$router.push({name: 'D2'});
       axios.get('/getAllClassificationCount', {})
         .then((response) => {
           var cdata = response.data.results
-          var f = cdata.find(item => item.Classification == 0).count
-          var a = cdata.find(item => item.Classification == 1).count
-          var b = cdata.find(item => item.Classification == 2).count
-          var c = cdata.find(item => item.Classification == 3).count
-          var d = cdata.find(item => item.Classification == 4).count
+          console.log(cdata, 'pie2')
+
+          // var f = cdata.find(item => item.Classification == 0).count
+          // var a = cdata.find(item => item.Classification == 1).count
+          // var b = cdata.find(item => item.Classification == 2).count
+          // var c = cdata.find(item => item.Classification == 3).count
+          // var d = cdata.find(item => item.Classification == 4).count
           // var e = cdata.find(item => item.Classification == 5).count
+          var f = 0
+          var a = 0
+          var b = 0
+          var c = 0
+          var d = 0
+          var e = 0
           var data1 = [];
-          data1.push({ name: 'Ⅰ级', value: a }, { name: 'Ⅱ级', value: b }, { name: 'Ⅲ级', value: c }, { name: 'Ⅳ级', value: d }, { name: '未分级', value: f })
+          cdata.forEach(item => {
+            if (item.Classification == 0) {
+              f = cdata.find(item => item.Classification == 0).count
+
+              data1.push({ name: '未分级', value: f })
+            }
+            else {
+              f = 0
+            }
+            if (item.Classification == 1) {
+              a = cdata.find(item => item.Classification == 1).count
+
+              data1.push({ name: 'Ⅰ级', value: a })            }
+            else {
+              a = 0
+            }
+            if (item.Classification == 2) {
+              b = cdata.find(item => item.Classification == 2).count
+
+              data1.push({ name: 'Ⅱ级', value: b })            }
+            else {
+              b = 0
+            }
+            if (item.Classification == 3) {
+              c = cdata.find(item => item.Classification == 3).count
+
+              data1.push({ name: 'Ⅲ级', value: c })            }
+            else {
+              c = 0
+            }
+            if (item.Classification == 4) {
+              d = cdata.find(item => item.Classification == 4).count
+
+              data1.push({ name: 'Ⅳ级', value: d })            }
+            else {
+              d = 0
+            }
+            if (item.Classification == 5) {
+              e = cdata.find(item => item.Classification == 5).count
+
+              data1.push({ name: 'Ⅴ级', value: e })            }
+            else {
+              e = 0
+            }
+          })
+
+
+
+
           chart.setOption({
             title: {
               text: '病情级别统计'
@@ -947,7 +1025,7 @@ this.$router.push({name: 'D2'});
       this.$router.push({ name: 'C1', params: { type: 3, id: 901 } });
     },
     handleConfirm() {
-      console.log(this.dataVal)
+      // console.log(this.dataVal)
       var date = formatDate(this.dataVal, 'yyyy-MM-dd')
       this.datepickerVisiable = true
       this.Redrawpie1(date);
@@ -964,15 +1042,37 @@ this.$router.push({name: 'D2'});
         "time": val
       }).then((response) => {
         console.log('根据日期获取一次数据')
-
+        var data1 = [];
         var a = response.data.results.chuzhizhong;
         var b = response.data.results.chuzhiwancheng;
         var c = response.data.results.daihousong;
         var d = response.data.results.housongzhong;
         var e = response.data.results.yiruyuan;
         var f = response.data.results.yichuyuan;
-        var data1 = [];
-        data1.push({ name: '处置中', value: a }, { name: '处置完成', value: b }, { name: '待后送', value: c }, { name: '后送中', value: d }, { name: '已入院', value: e }, { name: '已出院', value: f })
+
+        if (a > 0) {
+          data1.push({ name: '处置中', value: a })
+        }
+        if (b > 0) {
+          data1.push({ name: '处置完成', value: b })
+        }
+        if (c > 0) {
+          data1.push({ name: '待后送', value: c })
+        }
+        if (d > 0) {
+          data1.push({ name: '后送中', value: d })
+        }
+        if (e > 0) {
+          data1.push({ name: '已入院', value: e })
+        }
+        if (f > 0) {
+          data1.push({ name: '已出院', value: f })
+        }
+
+        if (data1.length < 1) {
+          data1.push({ name: '处置中', value: 0 }, { name: '处置完成', value: 0 }, { name: '待后送', value: 0 }, { name: '后送中', value: 0 }, { name: '已入院', value: 0 }, { name: '已出院', value: 0 })
+        }
+
         chart.setOption({
           title: {
             text: '病人状态统计'
@@ -1005,42 +1105,64 @@ this.$router.push({name: 'D2'});
         .then((response) => {
           console.log('根据日期获取一次数据pie2')
           var cdata = response.data.results
+
+
           var f = 0
           var a = 0
           var b = 0
           var c = 0
           var d = 0
+          var e = 0
+          var data1 = [];
           cdata.forEach(item => {
             if (item.Classification == 0) {
-              f = cdata.find(item => item.Classification == 0).count            }
+              f = cdata.find(item => item.Classification == 0).count
+
+              data1.push({ name: '未分级', value: f })
+            }
             else {
               f = 0
             }
             if (item.Classification == 1) {
-              a = cdata.find(item => item.Classification == 1).count            }
+              a = cdata.find(item => item.Classification == 1).count
+
+              data1.push({ name: 'Ⅰ级', value: a })            }
             else {
               a = 0
             }
             if (item.Classification == 2) {
-              b = cdata.find(item => item.Classification == 2).count            }
+              b = cdata.find(item => item.Classification == 2).count
+
+              data1.push({ name: 'Ⅱ级', value: b })            }
             else {
               b = 0
             }
             if (item.Classification == 3) {
-              c = cdata.find(item => item.Classification == 3).count            }
+              c = cdata.find(item => item.Classification == 3).count
+
+              data1.push({ name: 'Ⅲ级', value: c })            }
             else {
               c = 0
             }
             if (item.Classification == 4) {
-              d = cdata.find(item => item.Classification == 4).count            }
+              d = cdata.find(item => item.Classification == 4).count
+
+              data1.push({ name: 'Ⅳ级', value: d })            }
             else {
               d = 0
             }
+            if (item.Classification == 5) {
+              e = cdata.find(item => item.Classification == 5).count
+
+              data1.push({ name: 'Ⅴ级', value: e })            }
+            else {
+              e = 0
+            }
           })
 
-          var data1 = [];
-          data1.push({ name: 'Ⅰ级', value: a }, { name: 'Ⅱ级', value: b }, { name: 'Ⅲ级', value: c }, { name: 'Ⅳ级', value: d }, { name: '未分级', value: f })
-
+          if (data1.length < 1) {
+            data1.push({ name: '未分级', value: 0 }, { name: 'Ⅰ级', value: 0 }, { name: 'Ⅱ级', value: 0 }, { name: 'Ⅲ级', value: 0 }, { name: 'Ⅳ级', value: 0 }, { name: 'Ⅴ级', value: 0 })
+          }
           chart.setOption({
             title: {
               text: '病情级别统计'
