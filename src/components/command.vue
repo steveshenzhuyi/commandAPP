@@ -328,11 +328,10 @@ this.$router.push({name: 'D2'});
 
           var scheme = 'com.tencent.trtc';
           var roomnumber = 902;
-          console.log(roomnumber)
           appAvailability.check(scheme,
             function() {
               var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
-                "roomnumber":roomnumber,
+                "roomnumber":902,
                 "videoid":902
               });
               sApp.start(function() {
@@ -360,12 +359,10 @@ this.$router.push({name: 'D2'});
         if(response.data.results == "发送成功"){
 
           var scheme = 'com.tencent.trtc';
-          var roomnumber = 996;
-          console.log(roomnumber)
           appAvailability.check(scheme,
             function() {
               var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
-                "roomnumber":roomnumber,
+                "roomnumber":996,
                 "videoid":901
               });
               sApp.start(function() {

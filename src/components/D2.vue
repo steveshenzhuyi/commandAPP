@@ -16,7 +16,7 @@
             <div>
             <mt-button @click="callhos()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
             type="primary"><b>呼叫全体医院组</b></mt-button></div>
-            <div align="left" style="">
+            <div align="left" style="font-size: 30px">
             <mt-checklist @change="checkon"
             title="成员列表"
             v-model="critical1"
@@ -47,7 +47,7 @@ export default {
       tempcritical:[],
       critical1list:[],
       popupVisible1:false,
-      myvideoid:901
+      myvideoid:902
     };
   },
   mounted() {

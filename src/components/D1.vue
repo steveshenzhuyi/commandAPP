@@ -8,8 +8,8 @@
         <br><br> 
             <br><br>
            <div v-for="(item,index) in critical1list" @click="confirmpush(index)">
-             <div align="left">
-              <div><span>{{item.label}}</span></div>
+             <div align="left" style="height: 40px">
+              <div><span><b style="font-size: 20px">{{item.label}}</b></span></div>
             </div><hr>
            </div>
               <br><br><br><br>
