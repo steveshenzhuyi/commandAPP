@@ -92,7 +92,7 @@ export default {
           appAvailability.check(scheme,
             function() {
               var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
-                "roomnumber":roomnumber,
+                "roomnumber":996,
                 "videoid":videoid
               });
               sApp.start(function() {
