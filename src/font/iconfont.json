@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "7256702",
+      "name": "电话",
+      "font_class": "dianhua",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "7715095",
+      "name": "phone-call",
+      "font_class": "phone-call",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    }
+  ]
+}
