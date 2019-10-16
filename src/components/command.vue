@@ -20,29 +20,59 @@
         <br>
         <mt-tab-container v-model="selected1">
           <mt-tab-container-item id="1">
-            <br><br>
-            <div>
-              <mt-button @click="callall()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
-            type="primary"><b>呼叫全体成员</b></mt-button>
-            </div><br>
-            <div >
-              <mt-button @click="callhall()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
-            type="primary"><b>接通指挥中心</b></mt-button>
-            </div><br>
-            <div>
-              <mt-button  @click="callcom()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
-            type="primary"><b>呼叫总指挥</b></mt-button>
-            </div><br>
+
+            <div style="display: inline-block; padding: 10px;">
+              <mt-button @click="callhall()"
+                         size="small"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>接通指挥中心</b></mt-button>
+            </div>
+            <div style="display: inline-block; padding:10px;">
+              <mt-button @click="callcom()"
+                         size="small"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>呼叫总指挥</b></mt-button>
+            </div>
+            <div style="display: inline-block; padding:10px;">
+
+              <mt-button size="small"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>呼叫现场组</b></mt-button>
+            </div>
+            <div style="display: inline-block; padding:10px;">
+
+              <mt-button size="small"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>呼叫车辆和医院</b></mt-button>
+            </div>
+            <div style="display: inline-block; padding:10px;">
+
+              <mt-button size="small"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>呼叫医院</b></mt-button>
+            </div>
+            <div style="display: inline-block; padding:10px;">
+
+              <mt-button size="small"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>呼叫专家</b></mt-button>
+            </div>
             <!-- <div>
               <mt-button  @click="callasscom()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
             type="primary"><b>呼叫现场指挥</b></mt-button>
             </div><br> -->
-            <div>
-            <mt-button @click="callsingle()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
-            type="primary"><b>单独通话</b></mt-button></div><br>
-            <div>
-            <mt-button @click="callgroup()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
-            type="primary"><b>群组通话</b></mt-button></div>
+            <div style="display: inline-block; padding:10px ;">
+              <mt-button @click="callsingle()"
+                         size="small"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>单独通话</b></mt-button>
+            </div>
+            <div style="display: inline-block; padding:10px ;">
+              <mt-button @click="callgroup()"
+                         size="small"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>群组通话</b></mt-button>
+            </div>
             <br><br><br><br>
           </mt-tab-container-item>
           <mt-tab-container-item id="2">
@@ -96,8 +126,8 @@
         </mt-button>
         <mt-button @click="HosVisable=true">医院组
         </mt-button>
-        <!-- <mt-button @click="ExpertVisable=true">专家组
-        </mt-button> -->
+        <mt-button @click="ExpertVisable=true">专家组
+        </mt-button>
         <br><br>
       </mt-tab-container-item>
       <mt-tab-container-item id="统计">
@@ -107,7 +137,8 @@
           <hr>
         </mt-header>
         <br><br>
-        <div v-show="!datepickerVisiable" style="margin-top: 10px;margin-bottom: 10px">
+        <div v-show="!datepickerVisiable"
+             style="margin-top: 10px;margin-bottom: 10px">
           <mt-button @click.native="open('picker')">请选择日期</mt-button>
         </div>
         <div v-show="datepickerVisiable">
@@ -151,9 +182,12 @@
       <div v-for="item in asslist">
         <div @click="chooseass(item.LocationNo)"
              class="text-group">
-          {{item.LocationName}} </br>
-          位置: <span style="color:#d3b29b;font-size:20px;">{{item.Description}}</span></br>
-          会场负责人: {{item.Manager}} &nbsp;&nbsp; 联系方式: {{item.phone}}
+          {{item.LocationName}} <i style="font-size: 36px; color:#7eb37e;float:right"
+             class="iconfont icon-dianhua"
+             @click="sendcall(item.GroupNo)">
+          </i></br>
+          位置: <span style="color:#d3b29b;">{{item.Description}}</span></br>
+          会场负责人: {{item.Manager}} </br> 联系方式: {{item.phone}}
           <hr>
         </div>
       </div>
@@ -164,15 +198,21 @@
       <div v-for="item in carlist">
         <div @click="choosecar(item.CarNo)"
              class="text-group">
-          {{item.CarName}}</br>
+
+          {{item.CarName}} <i style="font-size: 36px; color:#7eb37e;float:right"
+             class="iconfont icon-dianhua"
+             @click="sendcall(item.GroupNo)">
+          </i></br>
+          {{item.Description}}</br>
           车牌号: {{item.CarId}}
           &nbsp;&nbsp;
           状态：{{item.CarStatus}}</br>
           车辆负责人:
-          {{item.CarManager}}&nbsp;&nbsp;
+          {{item.CarManager}}</br>
           联系方式: {{item.phone}}
-          <hr>
+
         </div>
+        <hr>
       </div>
     </mt-popup>
     <mt-popup v-model="HosVisable"
@@ -181,7 +221,10 @@
       <div v-for="item in hoslist">
         <div class="text-group"
              @click="choosehos(item.OrganizationCode)">
-          {{item.OrganizationName}}</br>
+          {{item.OrganizationName}}<i style="font-size: 36px; color:#7eb37e;float:right"
+             class="iconfont icon-dianhua"
+             @click="sendcall(item.GroupNo)">
+          </i></br>
           <mt-badge v-show="item.XiongtongTag">胸痛</mt-badge>
           <mt-badge v-show="item.GanranTag"> 感染</mt-badge>
           <mt-badge v-show="item.ZhongduTag">中毒</mt-badge>
@@ -196,7 +239,7 @@
           <mt-badge v-show="item.ChuanranTag">传染</mt-badge>
           </br>
           位置：{{item.LocationDescription}}</br>
-          医院负责人：{{item.realManager}}&nbsp;&nbsp;联系方式：{{item.phone}}
+          医院负责人：{{item.realManager}}</br>联系方式：{{item.phone}}
           <hr>
         </div>
       </div>
@@ -206,8 +249,12 @@
               style="width:344px;max-height:240px;overflow:auto">
       <div v-for="item in expertlist">
         <div class="text-group">
-          {{item.Name}} </br>
-          {{item.DepartmentName}} &nbsp;&nbsp; 专长：{{item.Specialty}}
+
+          {{item.Name}} <i style="font-size: 36px; color:#7eb37e;float:right"
+             class="iconfont icon-dianhua">
+          </i></br>
+          {{item.DepartmentCode}} {{item.TitleCode}} &nbsp;&nbsp;
+          专长：{{item.Specialty}}
           <hr>
         </div>
       </div>
@@ -292,96 +339,96 @@ export default {
     this.getVideoUserList()
   },
   methods: {
-    callsingle(){
-this.$router.push({name: 'D1'});
+    callsingle() {
+      this.$router.push({ name: 'D1' });
     },
-    callgroup(){
-this.$router.push({name: 'D2'});
+    callgroup() {
+      this.$router.push({ name: 'D2' });
     },
-    callhall(){
+    callhall() {
       var scheme = 'com.tencent.trtc';
       var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
       appAvailability.check(scheme,
-        function() {
-          var sApp = startApp.set({"application":"com.tencent.trtc"
-        }, { 
-                "roomnumber":999,
-                "videoid":videoid
-              });
-        sApp.start(function() {
-          }, function(error) {
+        function () {
+          var sApp = startApp.set({            "application": "com.tencent.trtc"
+          }, {
+            "roomnumber": 999,
+            "videoid": videoid
+          });
+          sApp.start(function () {
+          }, function (error) {
             alert(error);
           });
         },
-        function() {
+        function () {
           alert('未安装视频通话软件');
         }
-      );     
+      );
     },
-    callcom(){//902 901
-      axios.post('/pushVideo',{
-        roomnumber:902,
-        type:7,
-        tag:['901']
+    callcom() {//902 901
+      axios.post('/pushVideo', {
+        roomnumber: 902,
+        type: 7,
+        tag: ['901']
       }).then((response) => {
-        if(response.data.results == "发送成功"){
+        if (response.data.results == "发送成功") {
 
           var scheme = 'com.tencent.trtc';
           var roomnumber = 902;
           console.log(roomnumber)
           appAvailability.check(scheme,
-            function() {
-              var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
-                "roomnumber":roomnumber,
-                "videoid":902
+            function () {
+              var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
+                "roomnumber": roomnumber,
+                "videoid": 902
               });
-              sApp.start(function() {
-              }, function(error) {
+              sApp.start(function () {
+              }, function (error) {
                 alert(error);
               });
             },
-            function() {
+            function () {
               alert('未安装视频通话软件');
             }
-            );
-        }else{
+          );
+        } else {
           alert("无人在线")
         }
-      }).catch(function(error){
-        console.log("error",error);
+      }).catch(function (error) {
+        console.log("error", error);
       })
     },
-    callasscom(){//901 902
-      axios.post('/pushVideo',{
-        roomnumber:996,
-        type:6,
-        tag:['902']
+    callasscom() {//901 902
+      axios.post('/pushVideo', {
+        roomnumber: 996,
+        type: 6,
+        tag: ['902']
       }).then((response) => {
-        if(response.data.results == "发送成功"){
+        if (response.data.results == "发送成功") {
 
           var scheme = 'com.tencent.trtc';
           var roomnumber = 996;
           console.log(roomnumber)
           appAvailability.check(scheme,
-            function() {
-              var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
-                "roomnumber":roomnumber,
-                "videoid":901
+            function () {
+              var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
+                "roomnumber": roomnumber,
+                "videoid": 901
               });
-              sApp.start(function() {
-              }, function(error) {
+              sApp.start(function () {
+              }, function (error) {
                 alert(error);
               });
             },
-            function() {
+            function () {
               alert('未安装视频通话软件');
             }
-            );
-        }else{
+          );
+        } else {
           alert("无人在线")
         }
-      }).catch(function(error){
-        console.log("error",error);
+      }).catch(function (error) {
+        console.log("error", error);
       })
     },
     draw1() {
@@ -1564,6 +1611,20 @@ this.$router.push({name: 'D2'});
       this.openmsg = val
 
     },
+    sendcall(val) {
+
+      axios.post('/pushVideoLeader', {
+        "GN": val
+      }
+      )
+        .then((response) => {
+
+
+        }).catch(function (error) {
+          console.log("error", error);
+        })
+
+    },
   },
 };
 </script>
@@ -1599,5 +1660,14 @@ this.$router.push({name: 'D2'});
 .text-group {
   padding: 5px;
   text-align: left;
+}
+.block1 {
+  width: 120px;
+  height: 120px;
+  background-color: #26a2ff;
+  color: white;
+
+  text-align: center;
+  line-height: 120px;
 }
 </style>
