@@ -20,42 +20,46 @@
         <br>
         <mt-tab-container v-model="selected1">
           <mt-tab-container-item id="1">
+             <div style="display: inline-block; padding: 10px;">
+              <mt-button size="small" @click="callall()"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>呼叫全<br>体成员</b></mt-button>
+            </div>
             <div style="display: inline-block; padding: 10px;">
-              <mt-button @click="callhall()"
-                         size="small"
+              <mt-button size="small" @click="callhall()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
-                         type="primary"><b>接通指挥中心</b></mt-button>
+                         type="primary"><b>接通指<br>挥中心</b></mt-button>
+            </div>
+           <!--  <div style="display: inline-block; padding:10px;">
+              <mt-button size="small" @click="callcom()" 
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>呼叫<br>总指挥</b></mt-button>
+            </div> -->
+             <div style="display: inline-block; padding:10px;">
+              <mt-button size="small" @click="callasscom()"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>呼叫现场指挥</b></mt-button>
+            </div>
+           <!--  <div style="display: inline-block; padding:10px;">
+              <mt-button size="small" @click="callass()"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>呼叫<br>现场组</b></mt-button>
             </div>
             <div style="display: inline-block; padding:10px;">
-              <mt-button @click="callcom()"
-                         size="small"
+              <mt-button size="small" @click="callcarhos()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
-                         type="primary"><b>呼叫总指挥</b></mt-button>
+                         type="primary"><b>呼叫车<br>辆和医院</b></mt-button>
             </div>
             <div style="display: inline-block; padding:10px;">
-              <mt-button size="small"
+              <mt-button size="small" @click="callhos()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
-                         type="primary"><b>呼叫现场组</b></mt-button>
+                         type="primary"><b>呼叫<br>医院组</b></mt-button>
             </div>
             <div style="display: inline-block; padding:10px;">
-              <mt-button size="small"
-                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
-                         type="primary"><b>呼叫车辆和医院</b></mt-button>
-            </div>
-            <div style="display: inline-block; padding:10px;">
-              <mt-button size="small"
-                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
-                         type="primary"><b>呼叫医院</b></mt-button>
-            </div>
-            <div style="display: inline-block; padding:10px;">
-              <mt-button size="small"
+              <mt-button size="small" @click="callexpert()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>呼叫专家</b></mt-button>
-            </div>
-            <!-- <div>
-              <mt-button  @click="callasscom()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
-            type="primary"><b>呼叫现场指挥</b></mt-button>
-            </div><br> -->
+            </div> -->
             <div style="display: inline-block; padding:10px ;">
               <mt-button @click="callsingle()"
                          size="small"
@@ -116,9 +120,9 @@
         <div  style="width:80%;height: 60px">
         <!-- <mt-picker :slots="slots" @change="onPatientlistChange" :visible-item-count="3" :itemHeight='30'></mt-picker> -->
       </div>
-        <div align="right"><mt-button size="small" type="primary" style="position:relative;top:-60px"
+        <div align="right"><mt-button type="primary" style="position:relative;top:-50px"
         @click="getPatientList()">刷新</mt-button></div>
-        <div v-for="(item,index) in patientList" align="left" style="position:relative;top:-40px">
+        <div v-for="(item,index) in patientList" align="left" style="position:relative;top:-50px">
             <hr><a @click="getpatient(index)">
             <div><span>{{item.PatientId}}</span>
             <span><small style="position:absolute;left:110px">{{item.CreateTime}}</small></span></div>
@@ -134,9 +138,10 @@
             <small style="width:9em;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
             color:grey;position:absolute;left:220px;">症状：{{item.Diagnose}}</small></div>
             <div>
-            <small style="color:grey">医院：{{item.OrganizationName}}</small>
-            <small style="color:grey;position:absolute;left:110px;">车辆：{{item.CarName}}</small>
-            <small style="color:grey;position:absolute;left:220px;">车号：{{item.CarId}}</small>
+            <small style="color:grey">医院：{{item.OrganizationName}}</small></div>
+            <div>
+            <small style="color:grey">车辆：{{item.CarName}}</small>
+            <small style="color:grey;position:absolute;left:110px;">车号：{{item.CarId}}</small>
             {{item.Pcost}}</div></a>
         </div>
         <br><br>
@@ -278,7 +283,8 @@
       <div v-for="item in expertlist">
         <div class="text-group">
           {{item.Name}} <i style="font-size: 36px; color:#7eb37e;float:right"
-             class="iconfont icon-dianhua">
+             class="iconfont icon-dianhua"
+              @click="sendcall(item.GroupNo)">
           </i></br>
           {{item.DepartmentCode}} {{item.TitleCode}} &nbsp;&nbsp;
           专长：{{item.Specialty}}
@@ -383,7 +389,8 @@ export default {
       var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
       appAvailability.check(scheme,
         function () {
-          var sApp = startApp.set({            "application": "com.tencent.trtc"
+          var sApp = startApp.set({            
+            "application": "com.tencent.trtc"
           }, {
             "roomnumber": 999,
             "videoid": videoid
@@ -831,7 +838,7 @@ export default {
         })
     },
     getVideoUserList() {
-      window.JPush.setTags({ sequence: 1, tags: ['R05', '902'] },
+      window.JPush.setTags({ sequence: 1, tags: ['R05', '901'] },
         (result) => {
           // alert(tags)
           var sequence = result.sequence
@@ -946,18 +953,18 @@ export default {
       })
     },
     callass() {
-      MessageBox.confirm('确定呼叫全体现场组?').then(action => {
         axios.post('/pushVideo', {
-          type: 1
+        roomnumber:999,
+        type:7,
+        tag:['101']
         }).then((response) => {
           if (response.data.results == "发送成功") {
             var scheme = 'com.tencent.trtc';
-            var roomnumber = 991;
             appAvailability.check(scheme,
               function () {
                 var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
-                  "roomnumber": roomnumber,
-                  "videoid": 901
+                  "roomnumber": 999,
+                  "videoid": 902
                 });
                 sApp.start(function () {
                 }, function (error) {
@@ -974,21 +981,20 @@ export default {
         }).catch(function (error) {
           console.log("error", error);
         })
-      })
     },
-    callcar() {
-      MessageBox.confirm('确定呼叫全体车辆组?').then(action => {
+    callcarhos() {
         axios.post('/pushVideo', {
-          type: 2
+        roomnumber:999,
+        type:7,
+        tag:['201','301']
         }).then((response) => {
           if (response.data.results == "发送成功") {
             var scheme = 'com.tencent.trtc';
-            var roomnumber = 992;
             appAvailability.check(scheme,
               function () {
                 var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
-                  "roomnumber": roomnumber,
-                  "videoid": 901
+                  "roomnumber": 999,
+                  "videoid": 902
                 });
                 sApp.start(function () {
                 }, function (error) {
@@ -1005,21 +1011,20 @@ export default {
         }).catch(function (error) {
           console.log("error", error);
         })
-      })
     },
     callhos() {
-      MessageBox.confirm('确定呼叫全体医院组?').then(action => {
         axios.post('/pushVideo', {
-          type: 3
+        roomnumber:999,
+        type:7,
+        tag:['301']
         }).then((response) => {
           if (response.data.results == "发送成功") {
             var scheme = 'com.tencent.trtc';
-            var roomnumber = 993;
             appAvailability.check(scheme,
               function () {
                 var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
-                  "roomnumber": roomnumber,
-                  "videoid": 901
+                  "roomnumber": 999,
+                  "videoid": 902
                 });
                 sApp.start(function () {
                 }, function (error) {
@@ -1036,21 +1041,21 @@ export default {
         }).catch(function (error) {
           console.log("error", error);
         })
-      })
     },
     callexpert() {
       MessageBox.confirm('确定呼叫全体专家组?').then(action => {
         axios.post('/pushVideo', {
-          type: 4
+        roomnumber:999,
+        type:7,
+        tag:['401']
         }).then((response) => {
           if (response.data.results == "发送成功") {
             var scheme = 'com.tencent.trtc';
-            var roomnumber = 994;
             appAvailability.check(scheme,
               function () {
                 var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
-                  "roomnumber": roomnumber,
-                  "videoid": 901
+                  "roomnumber": 999,
+                  "videoid": 902
                 });
                 sApp.start(function () {
                 }, function (error) {

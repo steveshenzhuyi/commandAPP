@@ -8,13 +8,13 @@
         <br><br> 
         <br>
             <div >
-             <mt-button @click="callass()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
+             <mt-button @click="callass()" size="small"  style="position:relative;height: 55px; width: 200px;font-size: 22px"
             type="primary"><b>呼叫全体现场组</b></mt-button></div><br>
             <div>
-            <mt-button @click="callcar()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
+            <mt-button @click="callcar()" size="small"  style="position:relative;height: 55px; width: 200px;font-size: 22px"
             type="primary"><b>呼叫全体车辆组</b></mt-button></div><br>
             <div>
-            <mt-button @click="callhos()" size="small"  style="position:relative;height: 50px; width: 200px;font-size: 20px"
+            <mt-button @click="callhos()" size="small"  style="position:relative;height: 55px; width: 200px;font-size: 22px"
             type="primary"><b>呼叫全体医院组</b></mt-button></div>
             <div align="left" style="">
             <mt-checklist @change="checkon"
