@@ -418,8 +418,8 @@ export default {
               new SvgMarker.Shape.IconFont({
                 symbolJs: null,
                 icon: 'icon-changguan',
-                size: 50,
-                offset: [-25, -50],
+                size: 30,
+                offset: [-15, -25],
                 fillColor: 'grey'
               }), {
               map: mapObj,
@@ -461,8 +461,8 @@ export default {
               new SvgMarker.Shape.IconFont({
                 symbolJs: null,
                 icon: 'icon-hospital',
-                size: 50,
-                offset: [-25, -50],
+                size: 30,
+                offset: [-15, -25],
                 fillColor: 'red'
               }), {
               map: mapObj,
@@ -573,8 +573,8 @@ export default {
                 new SvgMarker.Shape.IconFont({
                   symbolJs: null,
                   icon: 'icon-emergencycar',
-                  size: 50,
-                  offset: [-25, -50],
+                  size: 30,
+                  offset: [-15, -25],
                   fillColor: 'blue'
                 }), {
                 map: mapObj,
