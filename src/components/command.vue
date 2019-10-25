@@ -20,27 +20,30 @@
         <br>
         <mt-tab-container v-model="selected1">
           <mt-tab-container-item id="1">
-             <div style="display: inline-block; padding: 10px;">
-              <mt-button size="small" @click="callall()"
+            <div style="display: inline-block; padding: 10px;">
+              <mt-button size="small"
+                         @click="callall()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>呼叫全<br>体成员</b></mt-button>
             </div>
             <div style="display: inline-block; padding: 10px;">
-              <mt-button size="small" @click="callhall()"
+              <mt-button size="small"
+                         @click="callhall()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>接通指<br>挥中心</b></mt-button>
             </div>
-           <!--  <div style="display: inline-block; padding:10px;">
+             <div style="display: inline-block; padding:10px;">
               <mt-button size="small" @click="callcom()" 
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>呼叫<br>总指挥</b></mt-button>
-            </div> -->
-             <div style="display: inline-block; padding:10px;">
-              <mt-button size="small" @click="callasscom()"
-                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
-                         type="primary"><b>呼叫现场指挥</b></mt-button>
             </div>
-           <!--  <div style="display: inline-block; padding:10px;">
+            <div style="display: inline-block; padding:10px;">
+              <mt-button size="small"
+                         @click="callasscom()"
+                         style="position:relative;height: 120px; width: 120px;font-size: 20px"
+                         type="primary"><b>呼叫现<br>场指挥</b></mt-button>
+            </div>
+             <!-- <div style="display: inline-block; padding:10px;">
               <mt-button size="small" @click="callass()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>呼叫<br>现场组</b></mt-button>
@@ -58,19 +61,19 @@
             <div style="display: inline-block; padding:10px;">
               <mt-button size="small" @click="callexpert()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
-                         type="primary"><b>呼叫专家</b></mt-button>
+                         type="primary"><b>呼叫<br>专家</b></mt-button>
             </div> -->
             <div style="display: inline-block; padding:10px ;">
               <mt-button @click="callsingle()"
                          size="small"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
-                         type="primary"><b>单独通话</b></mt-button>
+                         type="primary"><b>单独<br>通话</b></mt-button>
             </div>
-            <div style="display: inline-block; padding:10px ;">
+            <div style="display: inline-block; padding:10px;">
               <mt-button @click="callgroup()"
                          size="small"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
-                         type="primary"><b>群组通话</b></mt-button>
+                         type="primary"><b>群组<br>通话</b></mt-button>
             </div>
             <br><br><br><br>
           </mt-tab-container-item>
@@ -111,38 +114,48 @@
         </mt-tab-container>
       </mt-tab-container-item>
       <mt-tab-container-item id="病人">
-        <mt-header fixed style="font-size:25px;height: 50px;" title="病人列表">
+        <mt-header fixed
+                   style="font-size:25px;height: 50px;"
+                   title="病人列表">
           <!-- <mt-button size="small" slot="right"
             @click="SEE()"><small>接收病人</small></mt-button>
           <hr> -->
         </mt-header>
         <br><br>
-        <div  style="width:80%;height: 60px">
-        <!-- <mt-picker :slots="slots" @change="onPatientlistChange" :visible-item-count="3" :itemHeight='30'></mt-picker> -->
-      </div>
-        <div align="right"><mt-button type="primary" style="position:relative;top:-50px"
-        @click="getPatientList()">刷新</mt-button></div>
-        <div v-for="(item,index) in patientList" align="left" style="position:relative;top:-50px">
-            <hr><a @click="getpatient(index)">
+        <div style="width:80%;height: 60px">
+          <!-- <mt-picker :slots="slots" @change="onPatientlistChange" :visible-item-count="3" :itemHeight='30'></mt-picker> -->
+        </div>
+        <div align="right">
+          <mt-button type="primary"
+                     style="position:relative;top:-50px"
+                     @click="getPatientList()">刷新</mt-button>
+        </div>
+        <div v-for="(item,index) in patientList"
+             align="left"
+             style="position:relative;top:-50px">
+          <hr><a @click="getpatient(index)">
             <div><span>{{item.PatientId}}</span>
-            <span><small style="position:absolute;left:110px">{{item.CreateTime}}</small></span></div>
+              <span><small style="position:absolute;left:110px">{{item.CreateTime}}</small></span></div>
             <!-- <br> -->
             <div><span style="font-size:23px;">{{item.Name}}</span>
-            <span style="position:absolute;left:110px;font-size:20px;" :class="item.Classification">{{item.Classification}}</span>
-            <span style="position:absolute;left:220px;font-size:20px;" :class="item.StatusNameHos">{{item.StatusNameHos}}</span></div>
+              <span style="position:absolute;left:110px;font-size:20px;"
+                    :class="item.Classification">{{item.Classification}}</span>
+              <span style="position:absolute;left:220px;font-size:20px;"
+                    :class="item.StatusNameHos">{{item.StatusNameHos}}</span></div>
             <!-- <br> -->
             <div>
-            <small style="color:grey">
-            性别：{{item.Gender}}</small>
-            <small style="color:grey;position:absolute;left:110px;">年龄：{{item.Age}}</small>
-            <small style="width:9em;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
+              <small style="color:grey">
+                性别：{{item.Gender}}</small>
+              <small style="color:grey;position:absolute;left:110px;">年龄：{{item.Age}}</small>
+              <small style="width:9em;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
             color:grey;position:absolute;left:220px;">症状：{{item.Diagnose}}</small></div>
             <div>
-            <small style="color:grey">医院：{{item.OrganizationName}}</small></div>
+              <small style="color:grey">医院：{{item.OrganizationName}}</small></div>
             <div>
-            <small style="color:grey">车辆：{{item.CarName}}</small>
-            <small style="color:grey;position:absolute;left:110px;">车号：{{item.CarId}}</small>
-            {{item.Pcost}}</div></a>
+              <small style="color:grey">车辆：{{item.CarName}}</small>
+              <small style="color:grey;position:absolute;left:110px;">车号：{{item.CarId}}</small>
+              {{item.Pcost}}</div>
+          </a>
         </div>
         <br><br>
       </mt-tab-container-item>
@@ -284,7 +297,7 @@
         <div class="text-group">
           {{item.Name}} <i style="font-size: 36px; color:#7eb37e;float:right"
              class="iconfont icon-dianhua"
-              @click="sendcall(item.GroupNo)">
+             @click="sendcall(item.GroupNo)">
           </i></br>
           {{item.DepartmentCode}} {{item.TitleCode}} &nbsp;&nbsp;
           专长：{{item.Specialty}}
@@ -300,7 +313,7 @@
                src="./icon/语音通话.png">
           <div style="font-size:12px">指挥</div>
         </mt-tab-item>
-         <mt-tab-item id="病人">
+        <mt-tab-item id="病人">
           <img slot="icon"
                src="./icon/病人.png">
           <div style="font-size:12px">病人</div>
@@ -360,7 +373,7 @@ export default {
       expertlist: [],
       hoslist: [],
       openmsg: '',
-      patientList:[]
+      patientList: []
     };
   },
   mounted() {
@@ -389,7 +402,7 @@ export default {
       var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
       appAvailability.check(scheme,
         function () {
-          var sApp = startApp.set({            
+          var sApp = startApp.set({
             "application": "com.tencent.trtc"
           }, {
             "roomnumber": 999,
@@ -406,20 +419,21 @@ export default {
       );
     },
     callcom() {//902 901
+      var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
       axios.post('/pushVideo', {
-        roomnumber: 902,
+        roomnumber: videoid,
         type: 7,
         tag: ['901']
       }).then((response) => {
         if (response.data.results == "发送成功") {
 
           var scheme = 'com.tencent.trtc';
-          var roomnumber = 902;
+          var roomnumber = videoid;
           appAvailability.check(scheme,
-            function() {
-              var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
-                "roomnumber":902,
-                "videoid":902
+            function () {
+              var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
+                "roomnumber": videoid,
+                "videoid": videoid
               });
               sApp.start(function () {
               }, function (error) {
@@ -438,19 +452,20 @@ export default {
       })
     },
     callasscom() {//901 902
+      var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
       axios.post('/pushVideo', {
-        roomnumber: 996,
-        type: 6,
+        roomnumber: videoid,
+        type: 7,
         tag: ['902']
       }).then((response) => {
         if (response.data.results == "发送成功") {
 
           var scheme = 'com.tencent.trtc';
           appAvailability.check(scheme,
-            function() {
-              var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
-                "roomnumber":996,
-                "videoid":901
+            function () {
+              var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
+                "roomnumber": videoid,
+                "videoid": videoid
               });
               sApp.start(function () {
               }, function (error) {
@@ -838,7 +853,7 @@ export default {
         })
     },
     getVideoUserList() {
-      window.JPush.setTags({ sequence: 1, tags: ['R05', '901'] },
+      window.JPush.setTags({ sequence: 1, tags: ['R05', '905'] },
         (result) => {
           // alert(tags)
           var sequence = result.sequence
@@ -859,17 +874,17 @@ export default {
       //   console.log("error", error);
       // })
     },
-    getPatientList(){
-       axios.get('/getPatientListAllCreatetime',{
+    getPatientList() {
+      axios.get('/getPatientListAllCreatetime', {
       }).then((response) => {
-      this.patientList=response.data.results
-      }).catch(function(error){
-        console.log("error",error);
+        this.patientList = response.data.results
+      }).catch(function (error) {
+        console.log("error", error);
       })
     },
-    getpatient:function(index){
+    getpatient: function (index) {
       console.log(index)
-      this.$router.push({name: 'A1',params:{PATIENTID:this.patientList[index].PatientId}})
+      this.$router.push({ name: 'A1', params: { PATIENTID: this.patientList[index].PatientId } })
     },
     cancel() {
       this.critical1 = []
@@ -923,7 +938,7 @@ export default {
     callall() {
       MessageBox.confirm('确定呼叫全体成员?').then(action => {
         axios.post('/pushVideo', {
-          type: 0
+          type: 14
         }).then((response) => {
           if (response.data.results == "发送成功") {
             var scheme = 'com.tencent.trtc';
@@ -953,101 +968,101 @@ export default {
       })
     },
     callass() {
-        axios.post('/pushVideo', {
-        roomnumber:999,
-        type:7,
-        tag:['101']
-        }).then((response) => {
-          if (response.data.results == "发送成功") {
-            var scheme = 'com.tencent.trtc';
-            appAvailability.check(scheme,
-              function () {
-                var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
-                  "roomnumber": 999,
-                  "videoid": 902
-                });
-                sApp.start(function () {
-                }, function (error) {
-                  alert(error);
-                });
-              },
-              function () {
-                alert('未安装视频通话软件');
-              }
-            );
-          } else {
-            alert("无人在线")
-          }
-        }).catch(function (error) {
-          console.log("error", error);
-        })
+      axios.post('/pushVideo', {
+        roomnumber: 999,
+        type: 7,
+        tag: ['501']
+      }).then((response) => {
+        if (response.data.results == "发送成功") {
+          var scheme = 'com.tencent.trtc';
+          appAvailability.check(scheme,
+            function () {
+              var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
+                "roomnumber": 999,
+                "videoid": 902
+              });
+              sApp.start(function () {
+              }, function (error) {
+                alert(error);
+              });
+            },
+            function () {
+              alert('未安装视频通话软件');
+            }
+          );
+        } else {
+          alert("无人在线")
+        }
+      }).catch(function (error) {
+        console.log("error", error);
+      })
     },
     callcarhos() {
-        axios.post('/pushVideo', {
-        roomnumber:999,
-        type:7,
-        tag:['201','301']
-        }).then((response) => {
-          if (response.data.results == "发送成功") {
-            var scheme = 'com.tencent.trtc';
-            appAvailability.check(scheme,
-              function () {
-                var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
-                  "roomnumber": 999,
-                  "videoid": 902
-                });
-                sApp.start(function () {
-                }, function (error) {
-                  alert(error);
-                });
-              },
-              function () {
-                alert('未安装视频通话软件');
-              }
-            );
-          } else {
-            alert("无人在线")
-          }
-        }).catch(function (error) {
-          console.log("error", error);
-        })
+      axios.post('/pushVideo', {
+        roomnumber: 999,
+        type: 7,
+        tag: ['502', '503']
+      }).then((response) => {
+        if (response.data.results == "发送成功") {
+          var scheme = 'com.tencent.trtc';
+          appAvailability.check(scheme,
+            function () {
+              var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
+                "roomnumber": 999,
+                "videoid": 902
+              });
+              sApp.start(function () {
+              }, function (error) {
+                alert(error);
+              });
+            },
+            function () {
+              alert('未安装视频通话软件');
+            }
+          );
+        } else {
+          alert("无人在线")
+        }
+      }).catch(function (error) {
+        console.log("error", error);
+      })
     },
     callhos() {
-        axios.post('/pushVideo', {
-        roomnumber:999,
-        type:7,
-        tag:['301']
-        }).then((response) => {
-          if (response.data.results == "发送成功") {
-            var scheme = 'com.tencent.trtc';
-            appAvailability.check(scheme,
-              function () {
-                var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
-                  "roomnumber": 999,
-                  "videoid": 902
-                });
-                sApp.start(function () {
-                }, function (error) {
-                  alert(error);
-                });
-              },
-              function () {
-                alert('未安装视频通话软件');
-              }
-            );
-          } else {
-            alert("无人在线")
-          }
-        }).catch(function (error) {
-          console.log("error", error);
-        })
+      axios.post('/pushVideo', {
+        roomnumber: 999,
+        type: 7,
+        tag: ['503']
+      }).then((response) => {
+        if (response.data.results == "发送成功") {
+          var scheme = 'com.tencent.trtc';
+          appAvailability.check(scheme,
+            function () {
+              var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
+                "roomnumber": 999,
+                "videoid": 902
+              });
+              sApp.start(function () {
+              }, function (error) {
+                alert(error);
+              });
+            },
+            function () {
+              alert('未安装视频通话软件');
+            }
+          );
+        } else {
+          alert("无人在线")
+        }
+      }).catch(function (error) {
+        console.log("error", error);
+      })
     },
     callexpert() {
       MessageBox.confirm('确定呼叫全体专家组?').then(action => {
         axios.post('/pushVideo', {
-        roomnumber:999,
-        type:7,
-        tag:['401']
+          roomnumber: 999,
+          type: 7,
+          tag: ['401']
         }).then((response) => {
           if (response.data.results == "发送成功") {
             var scheme = 'com.tencent.trtc';
@@ -1117,10 +1132,10 @@ export default {
       this.$router.push({ name: 'C1', params: { type: 1, id: 993 } });
     },
     seesend() {
-      this.$router.push({ name: 'C1', params: { type: 2, id: 902 } });
+      this.$router.push({ name: 'C1', params: { type: 2, id: Number(window.localStorage.getItem("VIDEOUSERID")) } });
     },
     seereceive() {
-      this.$router.push({ name: 'C1', params: { type: 3, id: 902 } });
+      this.$router.push({ name: 'C1', params: { type: 3, id: Number(window.localStorage.getItem("VIDEOUSERID")) } });
     },
     handleConfirm() {
       // console.log(this.dataVal)
@@ -1661,11 +1676,24 @@ export default {
 
       axios.post('/pushVideoLeader', {
         "GN": val
-      }
-      )
-        .then((response) => {
-
-
+      }).then((response) => {
+          var scheme = 'com.tencent.trtc';
+          var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
+          appAvailability.check(scheme,
+            function () {
+              var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
+                "roomnumber": 999,
+                "videoid": videoid
+              });
+              sApp.start(function () {
+              }, function (error) {
+                alert(error);
+              });
+            },
+            function () {
+              alert('未安装视频通话软件');
+            }
+          );
         }).catch(function (error) {
           console.log("error", error);
         })

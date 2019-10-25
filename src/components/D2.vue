@@ -47,7 +47,7 @@ export default {
       tempcritical:[],
       critical1list:[],
       popupVisible1:false,
-      myvideoid:902
+      myvideoid:Number(window.localStorage.getItem("VIDEOUSERID"))
     };
   },
   mounted() {
