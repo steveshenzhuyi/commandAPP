@@ -12,7 +12,7 @@ export default {
       reload:this.reload
     }
   },
-  data() {
+  data() { 
     return {
       isRouterAlive:true,
       exitAppTicker:0
@@ -20,25 +20,21 @@ export default {
   },
   mounted(){
     this.backbutton()
+    window.localStorage.setItem("VIDEOUSERID",905)
     var that = this
     document.addEventListener("jpush.receiveNotification", function (event) {
-      var alertContent
-      alertContent = event.extras.type
-      if(alertContent == 'video'){
-        that.GLOBAL.changeVideoAlert(true)
-      }
-      console.log(that.GLOBAL)
-    }, false)
-
-    document.addEventListener("jpush.openNotification", function (event) {
       var alertContent = event.extras.type
-      
-      if(alertContent == 'video'){
-        that.GLOBAL.changeVideoAlert(false)
+      var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
+      if(alertContent == 'video' && videoid != 0){
+        // that.GLOBAL.changeVideoAlert(true)
         var scheme = 'com.tencent.trtc';
+        var roomnumber = Number(event.extras.roomnumber);
         appAvailability.check(scheme,
           function() {
-            var sApp = startApp.set({"application":"com.tencent.trtc"});
+            var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
+                "roomnumber":roomnumber,
+                "videoid":videoid
+              });
             sApp.start(function() {
             }, function(error) {
               alert(error);
@@ -48,13 +44,35 @@ export default {
             alert(scheme + ' is not available');
           }
         );
-      }else if(alertContent == 'news'){
-        var num = event.extras.MessageNo
-       window.localStorage.setItem('MESSAGENO',num);
-       that.$router.push({name:'C1'});
-      }else if(alertContent == 'ECG'){
-        var PatientId = event.extras.PatientId
-        that.$router.push({name:'A1',params:{PATIENTID:PatientId,SELECTED1:"处置方案"}});
+      }else if(alertContent == 'ver'){
+        that.checkversion()
+      }
+      console.log(that.GLOBAL)
+    }, false)
+
+    document.addEventListener("jpush.openNotification", function (event) {
+      var alertContent = event.extras.type
+      var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
+      
+      if(alertContent == 'video' && videoid != 0){
+        that.GLOBAL.changeVideoAlert(false)
+        var scheme = 'com.tencent.trtc';
+        var roomnumber = Number(event.extras.roomnumber);
+        appAvailability.check(scheme,
+          function() {
+            var sApp = startApp.set({"application":"com.tencent.trtc"}, { 
+                "roomnumber":roomnumber,
+                "videoid":videoid
+              });
+            sApp.start(function() {
+            }, function(error) {
+              alert(error);
+            });
+          },
+          function() {
+            alert(scheme + ' is not available');
+          }
+        );
       }
     }, false)
 
