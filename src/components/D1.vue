@@ -8,7 +8,7 @@
         <br><br> 
             <br><br>
            <div v-for="(item,index) in critical1list" @click="confirmpush(index)">
-             <div align="left" style="height: 40px">
+             <div align="left" style="height: 50px">
               <div><span><b style="font-size: 20px">{{item.label}}</b></span></div>
             </div><hr>
            </div>
@@ -16,7 +16,7 @@
     <router-view></router-view>
   </div>
 </template>
-
+ 
 <script>
 import {picker} from 'mint-ui';
 import axios from 'axios';
@@ -30,7 +30,7 @@ export default {
       tempcritical:[],
       critical1list:[],
       popupVisible1:false,
-      myvideoid:902
+      myvideoid:Number(window.localStorage.getItem("VIDEOUSERID"))
     };
   },
   mounted() {

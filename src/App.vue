@@ -12,7 +12,7 @@ export default {
       reload:this.reload
     }
   },
-  data() {
+  data() { 
     return {
       isRouterAlive:true,
       exitAppTicker:0
@@ -20,7 +20,7 @@ export default {
   },
   mounted(){
     this.backbutton()
-    window.localStorage.setItem("VIDEOUSERID",901)
+    window.localStorage.setItem("VIDEOUSERID",905)
     var that = this
     document.addEventListener("jpush.receiveNotification", function (event) {
       var alertContent = event.extras.type
