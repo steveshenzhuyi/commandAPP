@@ -10,6 +10,7 @@ import router from './router';
 import '../settings.js';
 import VueQr from 'vue-qr';
 import './assets/iconfont3.js';
+import './font/iconfont.css';
 import QRCode from 'qrcodejs2';
 import gallery from 'img-vuer';
 import global_ from './components/global.vue';
@@ -35,79 +36,83 @@ Vue.prototype.$goRoute = function $goRoute(index) {
 
 Vue.config.productionTip = false;
 
-document.addEventListener('deviceready',function(){
+document.addEventListener('deviceready', function () {
   //alert('Device is Ready!');
   new Vue({
     el: '#app',
     router,
     // store,
     render: h => h(App),
-    components: { App },
+    components: {
+      App
+    },
     template: '<App/>',
   })
   // navigator.splashscreen.hide()
-document.addEventListener('jpush.receiveRegistrationId', function(event) {
-        alert("receiveRegistrationId" + JSON.stringify(event));
-    }, false)
+  document.addEventListener('jpush.receiveRegistrationId', function (event) {
+    alert("receiveRegistrationId" + JSON.stringify(event));
+  }, false)
 
-initiateUI()
-
-
+  initiateUI()
 
 
 
-// JPush.getUserNotificationSettings(function(result) {
-//   if(result == 0) {
-//     alert("系统不允许推送")
-//     // 系统设置中已关闭应用推送。
-//   } else if(result > 0) {
-//     // 系统设置中打开了应用推送。
-//     alert("系统允许推送")
-//   }
-//  })
 
-},false);
+
+  // JPush.getUserNotificationSettings(function(result) {
+  //   if(result == 0) {
+  //     alert("系统不允许推送")
+  //     // 系统设置中已关闭应用推送。
+  //   } else if(result > 0) {
+  //     // 系统设置中打开了应用推送。
+  //     alert("系统允许推送")
+  //   }
+  //  })
+
+}, false);
 
 
 function initiateUI() {
-    try {
-       // window.JPush.setDebugMode(true);
-        JPush.init();
-        //setTimeout(getRegistrationID, 10000);
- 
-        if (device.platform != "Android") {
-            JPush.setApplicationIconBadgeNumber(0);
-        }
-    } catch (exception) {
-        alert('An exception has been occured when init JPush plugin.' + exception);
-    }
-}
- 
-function getRegistrationID() {
-   //alert('Device getRegistrationID!');
+  try {
+    // window.JPush.setDebugMode(true);
+    JPush.init();
+    //setTimeout(getRegistrationID, 10000);
 
-    JPush.getRegistrationID(onGetRegistrationID)
-}
- 
-function onGetRegistrationID(data) {
-    try {
-        if (data.length === 0) {
-            alert('id is null')
-            var t1 = setTimeout(getRegistrationID, 5000);
-        } else {
-            alert(data)
-        }
-    } catch (exception) {
-        console.log(exception);
+    if (device.platform != "Android") {
+      JPush.setApplicationIconBadgeNumber(0);
     }
+  } catch (exception) {
+    alert('An exception has been occured when init JPush plugin.' + exception);
+  }
 }
-    
+
+function getRegistrationID() {
+  //alert('Device getRegistrationID!');
+
+  JPush.getRegistrationID(onGetRegistrationID)
+}
+
+function onGetRegistrationID(data) {
+  try {
+    if (data.length === 0) {
+      alert('id is null')
+      var t1 = setTimeout(getRegistrationID, 5000);
+    } else {
+      alert(data)
+    }
+  } catch (exception) {
+    console.log(exception);
+  }
+}
+
 
 new Vue({
   el: '#app',
   render: h => h(App),
   router,
   // store,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>',
 });

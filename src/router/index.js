@@ -11,13 +11,15 @@ import command from '@/components/command';
 // import increaseC from '@/components/increaseC';
 // import increaseCT from '@/components/increaseCT';
 // import increaseCH from '@/components/increaseCH';
-// import A1 from '@/components/A1';
+import A1 from '@/components/A1';
 // import T1 from '@/components/T1';
 // import H1 from '@/components/H1';
 // import Z1 from '@/components/Z1';
 // import 资源详情 from '@/components/B1';
 // import B2 from '@/components/B2';
 import C1 from '@/components/C1';
+import D1 from '@/components/D1';
+import D2 from '@/components/D2';
 // import C2 from '@/components/C2';
 // import C3 from '@/components/C3';
 // import C4 from '@/components/C4';
@@ -49,6 +51,21 @@ export default new Router({
       path: '/C1',
       name: 'C1',
       component: C1,
+    },
+    {
+      path: '/A1',
+      name: 'A1',
+      component: A1,
+    },
+    {
+      path: '/D1',
+      name: 'D1',
+      component: D1,
+    },
+    {
+      path: '/D2',
+      name: 'D2',
+      component: D2,
     },
     
   ],
