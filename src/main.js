@@ -10,6 +10,7 @@ import router from './router';
 import '../settings.js';
 import VueQr from 'vue-qr';
 import './assets/iconfont3.js';
+import './assets/iconfont7.js';
 import './font/iconfont.css';
 import QRCode from 'qrcodejs2';
 import gallery from 'img-vuer';
