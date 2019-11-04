@@ -40,7 +40,7 @@
             </div>
             <div style="display: inline-block; padding:10px;">
               <mt-button size="small"
-                         @click="callcom()"
+                         @click="callasscom()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>呼叫现<br>场指挥</b></mt-button>
             </div>
