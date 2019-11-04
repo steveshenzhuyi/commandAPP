@@ -32,18 +32,19 @@
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>接通指<br>挥中心</b></mt-button>
             </div>
-             <div style="display: inline-block; padding:10px;">
-              <mt-button size="small" @click="callcom()" 
+            <div style="display: inline-block; padding:10px;">
+              <mt-button size="small"
+                         @click="callcom()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>呼叫<br>总指挥</b></mt-button>
             </div>
             <div style="display: inline-block; padding:10px;">
               <mt-button size="small"
-                         @click="callasscom()"
+                         @click="callcom()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>呼叫现<br>场指挥</b></mt-button>
             </div>
-             <!-- <div style="display: inline-block; padding:10px;">
+            <!-- <div style="display: inline-block; padding:10px;">
               <mt-button size="small" @click="callass()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>呼叫<br>现场组</b></mt-button>
@@ -168,13 +169,17 @@
         <br><br> <br>
         <Gd_map :openmsg="openmsg"> </Gd_map>
         <br>
-        <mt-button @click="AssVisable=true">现场组
+        <mt-button @click="AssVisable=true"
+                   size="small">医疗点
         </mt-button>
-        <mt-button @click="CarVisable=true">车辆组
+        <mt-button @click="CarVisable=true"
+                   size="small">车辆组
         </mt-button>
-        <mt-button @click="HosVisable=true">医院组
+        <mt-button @click="HosVisable=true"
+                   size="small">医院组
         </mt-button>
-        <mt-button @click="ExpertVisable=true">专家组
+        <mt-button @click="ExpertVisable=true"
+                   size="small">专家组
         </mt-button>
         <br><br>
       </mt-tab-container-item>
@@ -1677,26 +1682,26 @@ export default {
       axios.post('/pushVideoLeader', {
         "GN": val
       }).then((response) => {
-          var scheme = 'com.tencent.trtc';
-          var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
-          appAvailability.check(scheme,
-            function () {
-              var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
-                "roomnumber": 999,
-                "videoid": videoid
-              });
-              sApp.start(function () {
-              }, function (error) {
-                alert(error);
-              });
-            },
-            function () {
-              alert('未安装视频通话软件');
-            }
-          );
-        }).catch(function (error) {
-          console.log("error", error);
-        })
+        var scheme = 'com.tencent.trtc';
+        var videoid = Number(window.localStorage.getItem("VIDEOUSERID"))
+        appAvailability.check(scheme,
+          function () {
+            var sApp = startApp.set({ "application": "com.tencent.trtc" }, {
+              "roomnumber": 999,
+              "videoid": videoid
+            });
+            sApp.start(function () {
+            }, function (error) {
+              alert(error);
+            });
+          },
+          function () {
+            alert('未安装视频通话软件');
+          }
+        );
+      }).catch(function (error) {
+        console.log("error", error);
+      })
 
     },
   },
