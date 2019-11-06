@@ -417,7 +417,7 @@ export default {
             markerAss[i] = new SvgMarker(
               new SvgMarker.Shape.IconFont({
                 symbolJs: null,
-                icon: 'icon-changguan',
+                icon: 'icon-yiyuan2',
                 size: 30,
                 offset: [-15, -25],
                 fillColor: 'grey'
@@ -460,7 +460,7 @@ export default {
             markerHos[i] = new SvgMarker(
               new SvgMarker.Shape.IconFont({
                 symbolJs: null,
-                icon: 'icon-hospital',
+                icon: 'icon-filled_outline_hospital-cross-building',
                 size: 30,
                 offset: [-15, -25],
                 fillColor: 'red'
