@@ -32,7 +32,7 @@
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>接通指<br>挥中心</b></mt-button>
             </div>
-            <div style="display: inline-block; padding:10px;">
+            <!-- <div style="display: inline-block; padding:10px;">
               <mt-button size="small"
                          @click="callcom()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
@@ -43,7 +43,7 @@
                          @click="callasscom()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
                          type="primary"><b>呼叫现<br>场指挥</b></mt-button>
-            </div>
+            </div> -->
             <!-- <div style="display: inline-block; padding:10px;">
               <mt-button size="small" @click="callass()"
                          style="position:relative;height: 120px; width: 120px;font-size: 20px"
@@ -858,7 +858,7 @@ export default {
         })
     },
     getVideoUserList() {
-      window.JPush.setTags({ sequence: 1, tags: ['R05', '905'] },
+      window.JPush.setTags({ sequence: 1, tags: ['R05', '904'] },
         (result) => {
           // alert(tags)
           var sequence = result.sequence

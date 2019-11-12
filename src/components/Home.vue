@@ -1,10 +1,10 @@
 <template>
   <div align="center">
     <img src="./pictrue/logo.png">
-    <h2>第六届世界互联网大会</h2>
-    <h2>急救保障系统指挥端</h2><hr>
+    <h2>第五届世界浙商大会</h2>
+    <h2>医疗保障系统指挥端</h2><hr>
     <!-- <mt-field label="用户名" placeholder="请输入用户名" v-model="userId"></mt-field> -->
-    <mt-field label="密码" placeholder="请输入密码" type="password" v-model="pwd"></mt-field>
+    <!-- <mt-field label="密码" placeholder="请输入密码" type="password" v-model="pwd"></mt-field> -->
     <hr>
     <br>
     <mt-button size="large" type="primary" @click="check()">登录</mt-button>
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       userId: '',
-      pwd: '',
+      pwd: '123',
     };
   },
   methods: {

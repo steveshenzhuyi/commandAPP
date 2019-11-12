@@ -20,7 +20,7 @@ export default {
   },
   mounted(){
     this.backbutton()
-    window.localStorage.setItem("VIDEOUSERID",905)
+    window.localStorage.setItem("VIDEOUSERID",904)
     var that = this
     document.addEventListener("jpush.receiveNotification", function (event) {
       var alertContent = event.extras.type
