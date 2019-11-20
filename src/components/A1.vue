@@ -456,7 +456,7 @@ export default {
       this.content = ""
     },
    returnZ() {
-         this.$router.push({name: 'command',params:{SELECTED:'指挥',SELECTED1:'1'}});
+         this.$router.push({name: 'command',params:{SELECTED:'病人'}});
   },
     choosephoto() {
       navigator.camera.getPicture(onSuccess, onFail, { 

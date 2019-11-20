@@ -147,15 +147,19 @@
             <div>
               <small style="color:grey">
                 性别：{{item.Gender}}</small>
-              <small style="color:grey;position:absolute;left:110px;">年龄：{{item.Age}}</small>
+              <small style="color:grey;position:absolute;left:80px;">年龄：{{item.Age}}</small>
               <small style="width:9em;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
-            color:grey;position:absolute;left:220px;">症状：{{item.Diagnose}}</small></div>
+            color:grey;position:absolute;left:160px;">诊断：{{item.Diagnose}}</small></div>
             <div>
-              <small style="color:grey">医院：{{item.OrganizationName}}</small></div>
+              <small style="color:grey">医疗点：{{item.LocationName}}</small>
+            </div>
             <div>
-              <small style="color:grey">车辆：{{item.CarName}}</small>
+              <small style="color:grey">后送医院：{{item.OrganizationName}}</small>
+            </div>
+            <div>
+              <small style="color:grey">后送车辆：{{item.CarName}}</small>
               <small style="color:grey;position:absolute;left:110px;">车号：{{item.CarId}}</small>
-              {{item.Pcost}}</div>
+            </div>
           </a>
         </div>
         <br><br>
