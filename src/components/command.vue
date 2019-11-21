@@ -131,7 +131,7 @@
                      style="position:relative;top:-50px"
                      @click="getPatientList()">刷新</mt-button>
         </div>
-        <div v-for="(item,index) in patientList"
+        <div v-for="(item,index) in patientList" :key="index"
              align="left"
              style="position:relative;top:-50px">
           <hr><a @click="getpatient(index)">
@@ -197,10 +197,12 @@
         <div v-show="!datepickerVisiable"
              style="margin-top: 10px;margin-bottom: 10px">
           <mt-button @click.native="open('picker')">请选择日期</mt-button>
+           <mt-button @click.native="reset()">刷新</mt-button>
         </div>
-        <div v-show="datepickerVisiable">
+        <div v-show="datepickerVisiable" style="margin-top: 10px;margin-bottom: 10px">
           <mt-button @click.native="open('picker')">{{dataVal | formatDate}}</mt-button>
           <mt-button @click="reset()">重置</mt-button>
+           <mt-button @click="refreshByDate()">刷新</mt-button>
         </div>
         <mt-datetime-picker v-model="dataVal"
                             type="date"
@@ -222,10 +224,12 @@
                style="width:344px;height:300px"></div>
           <hr>
           <div id="myChart4"
-               style="width:344px;height:300px"></div>
+          class="chartwidth"
+               :style="{height: chartHeight1}"></div>
           <hr>
           <div id="myChart5"
-               style="width:344px;height:300px"></div>
+          class="chartwidth"
+               :style="{height: chartHeight2}"></div>
         </div>
         <br><br>
       </mt-tab-container-item>
@@ -236,15 +240,15 @@
     <mt-popup v-model="AssVisable"
               position="bottom"
               style="width:344px;max-height:240px;overflow:auto">
-      <div v-for="item in asslist">
+      <div v-for="(item,index) in asslist" :key="index">
         <div @click="chooseass(item.LocationNo)"
              class="text-group">
           {{item.LocationName}} <i style="font-size: 36px; color:#7eb37e;float:right"
              class="iconfont icon-dianhua"
              @click="sendcall(item.GroupNo)">
-          </i></br>
-          位置: <span style="color:#d3b29b;">{{item.Description}}</span></br>
-          会场负责人: {{item.Manager}} </br> 联系方式: {{item.phone}}
+          </i><br>
+          位置: <span style="color:#d3b29b;">{{item.Description}}</span><br>
+          会场负责人: {{item.Manager}} <br> 联系方式: {{item.phone}}
           <hr>
         </div>
       </div>
@@ -252,19 +256,19 @@
     <mt-popup v-model="CarVisable"
               position="bottom"
               style="width:344px;max-height:240px;overflow:auto">
-      <div v-for="item in carlist">
+      <div v-for="(item,index) in carlist" :key="index">
         <div @click="choosecar(item.CarNo)"
              class="text-group">
           {{item.CarName}} <i style="font-size: 36px; color:#7eb37e;float:right"
              class="iconfont icon-dianhua"
              @click="sendcall(item.GroupNo)">
-          </i></br>
-          {{item.Description}}</br>
+          </i><br>
+          {{item.Description}}<br>
           车牌号: {{item.CarId}}
           &nbsp;&nbsp;
-          状态：{{item.CarStatus}}</br>
+          状态：{{item.CarStatus}}<br>
           车辆负责人:
-          {{item.CarManager}}</br>
+          {{item.CarManager}}<br>
           联系方式: {{item.phone}}
         </div>
         <hr>
@@ -273,13 +277,13 @@
     <mt-popup v-model="HosVisable"
               position="bottom"
               style="width:344px;max-height:240px;overflow:auto">
-      <div v-for="item in hoslist">
+      <div v-for="(item,index) in hoslist" :key="index">
         <div class="text-group"
              @click="choosehos(item.OrganizationCode)">
           {{item.OrganizationName}}<i style="font-size: 36px; color:#7eb37e;float:right"
              class="iconfont icon-dianhua"
              @click="sendcall(item.GroupNo)">
-          </i></br>
+          </i><br>
           <mt-badge v-show="item.XiongtongTag">胸痛</mt-badge>
           <mt-badge v-show="item.GanranTag"> 感染</mt-badge>
           <mt-badge v-show="item.ZhongduTag">中毒</mt-badge>
@@ -292,9 +296,9 @@
           <mt-badge v-show="item.JingshenTag">精神</mt-badge>
           <mt-badge v-show="item.XinliTag">心理</mt-badge>
           <mt-badge v-show="item.ChuanranTag">传染</mt-badge>
-          </br>
-          位置：{{item.LocationDescription}}</br>
-          医院负责人：{{item.realManager}}</br>联系方式：{{item.phone}}
+          <br>
+          位置：{{item.LocationDescription}}<br>
+          医院负责人：{{item.realManager}}<br>联系方式：{{item.phone}}
           <hr>
         </div>
       </div>
@@ -302,12 +306,12 @@
     <mt-popup v-model="ExpertVisable"
               position="bottom"
               style="width:344px;max-height:240px;overflow:auto">
-      <div v-for="item in expertlist">
+      <div v-for="(item,index) in expertlist" :key="index">
         <div class="text-group">
           {{item.Name}} <i style="font-size: 36px; color:#7eb37e;float:right"
              class="iconfont icon-dianhua"
              @click="sendcall(item.GroupNo)">
-          </i></br>
+          </i><br>
           {{item.DepartmentCode}} {{item.TitleCode}} &nbsp;&nbsp;
           专长：{{item.Specialty}}
           <hr>
@@ -385,19 +389,38 @@ export default {
       patientList: []
     };
   },
+  computed: {
+    chartHeight1: function() {
+      var height=(this.asslist.length)*50
+      if(height>300){
+      return  height+'px'}
+      else {
+      return '300px'}
+    },
+    chartHeight2: function() {
+      var height=(this.hoslist.length)*50
+       if(height>300){
+      return  height+'px'}
+      else {
+      return '300px'}
+    }
+  },
   mounted() {
     console.log();
     this.getPatientList();
     this.draw1();
     this.draw2();
-    this.draw3();
-    this.draw4();
-    this.draw5();
+    this.draw3();   
     this.getCarlist();
     this.getHoslist();
     this.getAsslist();
     this.getExpertlist();
     this.getVideoUserList();
+    
+     
+    
+      
+   
   },
   methods: {
     callsingle() {
@@ -711,6 +734,7 @@ export default {
                 }
               },
               legend: {
+                 top: '25px',
                 data: ['现场处置人数', '后送人数']
               },
               grid: {
@@ -724,8 +748,13 @@ export default {
               },
               yAxis: {
                 type: 'category',
-                data: data1
+                data: data1,
+                axisLabel: { //xAxis，yAxis，axis都有axisLabel属性对象 
+                  interval: 0
+                }
+                
               },
+            
               series: [
                 {
                   name: '现场处置人数',
@@ -801,6 +830,7 @@ export default {
                 }
               },
               legend: {
+                 top: '25px',
                 data: ['待后送', '已入院', '已出院']
               },
               grid: {
@@ -814,7 +844,10 @@ export default {
               },
               yAxis: {
                 type: 'category',
-                data: data1
+                data: data1,
+                axisLabel: { //xAxis，yAxis，axis都有axisLabel属性对象 
+                  interval: 0
+                }
               },
               series: [
                 {
@@ -1158,6 +1191,14 @@ export default {
       this.Redrawbar2(date)
 
     },
+    refreshByDate(){     
+      var date = formatDate(this.dataVal, 'yyyy-MM-dd')    
+      this.Redrawpie1(date);
+      this.Redrawpie2(date);
+      this.Redrawpie3(date);
+      this.Redrawbar1(date)
+      this.Redrawbar2(date)
+    },
     Redrawpie1(val) {
       let chart = this.$echarts.init(document.getElementById('myChart1'), 'dark')
       // console.log(response.data.results)
@@ -1409,7 +1450,7 @@ export default {
                 }
               },
               legend: {
-                top: '10%',
+                 top: '25px',
                 data: ['现场处置人数', '后送人数']
               },
               grid: {
@@ -1515,7 +1556,7 @@ export default {
                 }
               },
               legend: {
-                top: '10%',
+                top: '25px',
                 data: ['待后送', '已入院', '已出院']
               },
               grid: {
@@ -1637,6 +1678,9 @@ export default {
       axios.get('/getHosList', {})
         .then((response) => {
           this.hoslist = response.data.results
+            this.$nextTick(()=>{
+            this.draw5()
+          })
         }).catch(function (error) {
           console.log("error", error);
         })
@@ -1645,6 +1689,11 @@ export default {
       axios.get('/getAssemblyList', {})
         .then((response) => {
           this.asslist = response.data.results
+          console.log('已经获取到会场组数',this.asslist.length)
+           this.$nextTick(()=>{
+            this.draw4()
+          })
+        
         }).catch(function (error) {
           console.log("error", error);
         })
@@ -1753,5 +1802,8 @@ export default {
 
   text-align: center;
   line-height: 120px;
+}
+.chartwidth{
+  width:344px;
 }
 </style>
