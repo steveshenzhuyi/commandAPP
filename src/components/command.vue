@@ -862,7 +862,8 @@ export default {
         })
     },
     getVideoUserList() {
-      window.JPush.setTags({ sequence: 1, tags: ['R05', '904'] },
+      var videoid = String(window.localStorage.getItem("VIDEOUSERID"))
+      window.JPush.setTags({ sequence: 1, tags: ['R05', videoid] },
         (result) => {
           // alert(tags)
           var sequence = result.sequence
