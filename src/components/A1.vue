@@ -48,45 +48,55 @@
         <mt-tab-container v-model="selected1">
            <mt-tab-container-item id="1">
               <div align="center" style="height:30px">
-                <span style="float: left;">主诉</span>
+                <b><span style="float: left;">主诉</span></b>
               </div>
               <div align="left">
                 <small style="color:grey">{{timevalue}} </small>
-                <mt-field  type="textarea" placeholder="暂无内容" v-model="主诉" rows="3" ></mt-field><hr>
+                <div><span style="display:inline-block;width:380px">{{主诉}}</span></div>
+                <!-- <mt-field  type="textarea" placeholder="暂无内容" v-model="主诉" rows="3" ></mt-field> -->
+                <hr>
               </div>
               <div align="center" style="height:30px">
                <!--  <mt-button v-show="editing2" size="small" style="float: right;margin-top: 2px" type="primary" @click="save20()">保存</mt-button>
                 <mt-button  v-show="editing2" size="small" style="float: right; margin-right:10px;margin-top: 2px" @click="cancel2()">取消</mt-button> -->
-                <span style="float: left;">现病史</span>
+                <b><span style="float: left;">现病史</span></b>
               </div>
               <div align="left">
                 <small style="color:grey">{{timevalue1}} </small>
-                <mt-field  type="textarea" placeholder="暂无内容" v-model="现病史" rows="3"></mt-field><hr>
+                <div><span style="display:inline-block;width:380px">{{现病史}}</span></div>
+                <!-- <mt-field  type="textarea" placeholder="暂无内容" v-model="现病史" rows="3"></mt-field>-->
+                <hr>
               </div>
               <div align="center" style="height:30px">
                 <!-- <mt-button v-show="editing41" size="small" style="float: right;margin-top: 2px" type="primary" @click="save41()">保存</mt-button>
                 <mt-button  v-show="editing41" size="small" style="float: right; margin-right:10px;margin-top: 2px" @click="cancel41()">取消</mt-button> -->
-                <span style="float: left;">过敏史</span>
+                <b><span style="float: left;">过敏史</span></b>
               </div>
               <div align="left">
                 <small style="color:grey">{{timevalue41}} </small>
-                <mt-field  type="textarea" placeholder="暂无内容" v-model="过敏史" rows="2"></mt-field><hr>
+                <div><span style="display:inline-block;width:380px">{{过敏史}}</span></div>
+                <!-- <mt-field  type="textarea" placeholder="暂无内容" v-model="过敏史" rows="2"></mt-field> -->
+                <hr>
               </div>
               <div align="center" style="height:30px">
                <!--  <mt-button v-show="editing42" size="small" style="float: right;margin-top: 2px" type="primary" @click="save42()">保存</mt-button>
                 <mt-button  v-show="editing42" size="small" style="float: right; margin-right:10px;margin-top: 2px" @click="cancel42()">取消</mt-button> -->
-                <span style="float: left;">疾病史</span>
+                <b><span style="float: left;">疾病史</span></b>
               </div>
               <div align="left">
                 <small style="color:grey">{{timevalue42}} </small>
-                <mt-field type="textarea" placeholder="暂无内容" v-model="疾病史"  rows="2"></mt-field><hr>
+                <div><span style="display:inline-block;width:380px">{{疾病史}}</span></div>
+                <!-- <mt-field type="textarea" placeholder="暂无内容" v-model="疾病史"  rows="2"></mt-field> -->
+                <hr>
               </div>
               <div align="center" style="height:30px">
-                <span style="float: left;">目前用药</span>
+                <b><span style="float: left;">目前用药</span></b>
               </div>
               <div align="left">
                 <small style="color:grey">{{timevalue43}} </small>
-                <mt-field type="textarea" placeholder="暂无内容" v-model="目前用药"  rows="2"></mt-field><hr>
+                <div><span style="display:inline-block;width:380px">{{目前用药}}</span></div>
+                <!-- <mt-field type="textarea" placeholder="暂无内容" v-model="目前用药"  rows="2"></mt-field>                 -->
+                <hr>
               </div>
               <div v-for="(item,index) in 主诉图片">
                 <div align="center">
@@ -104,10 +114,19 @@
               </div>
                 <hr>
               <div align="center" style="height:30px">
-              <span style="float: left;">初步诊断</span></div>
+              <b><span style="float: left;">初步诊断</span></b></div>
               <div align="left">
                 <small style="color:grey">{{timevalue2}}</small>
-                <mt-field type="textarea" placeholder="暂无内容" v-model="初步诊断" rows="3"></mt-field>
+                <div><span style="display:inline-block;width:380px">{{初步诊断}}</span></div>
+                <!-- <mt-field type="textarea" placeholder="暂无内容" v-model="初步诊断" rows="3"></mt-field> -->
+                <hr>
+              </div>
+              <div align="center" style="height:30px">
+              <b><span style="float: left;">疾病分类</span></b></div>
+              <div align="left">
+                <small style="color:grey">{{timevalue3}}</small>
+                <div><span style="display:inline-block;width:380px">{{疾病分类}}</span></div>
+                <!-- <mt-field type="textarea" placeholder="暂无内容" v-model="疾病分类" rows="2"></mt-field> -->
               </div>
               <hr>
               <div align="center" style="height:30px"><span style="float: left;">预检分级</span></div>
@@ -161,16 +180,18 @@ export default {
         timevalue42: '',
         timevalue43: '',
       timevalue2: '',
+      timevalue3: '',
       主诉: '',
       主诉图片:[],
       体征: '请选择体征',
       现病史: '',
       现病史图片:[],
-      过敏史: '',
-      疾病史: '',
-      目前用药: '',
+      过敏史: '暂无内容',
+      疾病史: '暂无内容',
+      目前用药: '暂无内容',
       既往史图片:[],
       初步诊断: '',
+      疾病分类: '暂无内容',
       level: '',
       Name: '',
       Gender: '',
@@ -227,7 +248,7 @@ export default {
               }
             }
           }else{
-            this.主诉='';
+            this.主诉='暂无内容';
             this.timevalue='';
           }
         //现病史
@@ -251,7 +272,7 @@ export default {
             }
           }
         }else{
-          this.现病史 = '';
+          this.现病史 = '暂无内容';
           this.timevalue1 = '';
         }
         //体征
@@ -295,9 +316,10 @@ export default {
           this.初步诊断=this.patientrecord.P05[0].Detail
           this.timevalue2=this.patientrecord.P05[0].OperationTime
         }else{
-          this.初步诊断=''
+          this.初步诊断='暂无内容'
           this.timevalue2=''
         }
+        //疾病分类
         //处置方案
         this.dataCZ=this.patientrecord.P11
           for(var j=0; j<this.patientrecord.P11.length;j++) {
@@ -311,7 +333,7 @@ export default {
         if(this.patientrecord.P06.length>0) {
           this.doctortell=this.patientrecord.P06[0].Detail
         }else{
-          this.doctortell= ''
+          this.doctortell= '暂无内容'
         }
       })
       axios.post('/getPatientInfo',{
