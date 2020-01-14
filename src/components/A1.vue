@@ -132,6 +132,12 @@
               <div align="center" style="height:30px"><span style="float: left;">预检分级</span></div>
               <div align="left" style="height:30px">
                 <span><b>当前分级：{{level}}</b></span></div>
+                <hr>
+              <div align="center" style="height:30px">
+              <b><span style="float: left;">医疗点</span></b></div>  
+              <div align="left">
+                <div><span style="display:inline-block;width:380px">{{GroupName}}{{LocationName}}</span><br>{{CarName}}{{hospital}}</div>
+              </div>
                 <br><br><br><br><br><br>
           </mt-tab-container-item>
           <mt-tab-container-item id="6">
@@ -194,6 +200,9 @@ export default {
       疾病分类: '暂无内容',
       level: '',
       Name: '',
+      GroupName: '',
+      CarName: '',
+      LocationName: '',
       Gender: '',
       Age: '',
       Nation:'',
@@ -356,6 +365,9 @@ export default {
         this.hospital = response.data.results[0].OrganizationName;
         this.level=response.data.results[0].Classification;
         this.carId = response.data.results[0].CarId;
+        this.GroupName = response.data.results[0].EmergencyGroupName;
+        this.LocationName = response.data.results[0].LocationName;
+        this.CarName = response.data.results[0].CarName;
         if(this.StatusNameHos == "已入院") {
           this.situations = "出院"
         }
