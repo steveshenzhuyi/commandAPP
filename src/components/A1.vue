@@ -136,7 +136,7 @@
               <div align="center" style="height:30px">
               <b><span style="float: left;">医疗点</span></b></div>  
               <div align="left">
-                <div><span style="display:inline-block;width:380px">{{GroupName}}{{LocationName}}</span><br>{{CarName}}{{hospital}}</div>
+                <div><span style="display:inline-block;width:380px">{{GroupName}}{{LocationName}}</span><br>{{CarName}}<br>{{hospital}}</div>
               </div>
                 <br><br><br><br><br><br>
           </mt-tab-container-item>
@@ -183,8 +183,8 @@ export default {
       timevalue: '',
       timevalue1: '',
       timevalue41: '',
-        timevalue42: '',
-        timevalue43: '',
+      timevalue42: '',
+      timevalue43: '',
       timevalue2: '',
       timevalue3: '',
       主诉: '',
